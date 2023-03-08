@@ -16,7 +16,7 @@ export default {
 <style lang="scss" scoped>
 .my-main{
   box-sizing: border-box;
-  width: 1317px;
+  width: 100%;
   height: inherit;
   padding: 40px;
 }

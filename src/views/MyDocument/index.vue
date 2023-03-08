@@ -24,21 +24,21 @@
           </div>
         </div>
         <div class="my-main-doc-toggle-project-table">
-          <el-table :data="workList" border style="width: 1232px">
-          <el-table-column prop="date" label="全选" width="123"><el-checkbox v-model="checked"></el-checkbox></el-table-column>
-          <el-table-column prop="date" label="任务ID" width="123"></el-table-column>
-          <el-table-column prop="name" label="文件名" width="123"></el-table-column>
-          <el-table-column prop="name" label="页数" width="123"></el-table-column>
-          <el-table-column prop="name" label="文件大小" width="123"></el-table-column>
-          <el-table-column prop="name" label="翻译语言" width="123"></el-table-column>
-          <el-table-column prop="name" label="翻译状态" width="123"></el-table-column>
-          <el-table-column prop="name" label="订单状态" width="123"></el-table-column>
-          <el-table-column prop="name" label="开始翻译时间" width="123"></el-table-column>
-          <el-table-column prop="name" label="操作" width="123"></el-table-column>
+          <el-table :data="workList" border style="width: 100%">
+          <el-table-column prop="date" label="全选" style="width: 10%"><el-checkbox v-model="checked"></el-checkbox></el-table-column>
+          <el-table-column prop="date" label="任务ID" style="width: 10%"></el-table-column>
+          <el-table-column prop="name" label="文件名" style="width: 10%"></el-table-column>
+          <el-table-column prop="name" label="页数" style="width: 10%"></el-table-column>
+          <el-table-column prop="name" label="文件大小" style="width: 10%"></el-table-column>
+          <el-table-column prop="name" label="翻译语言" style="width: 10%"></el-table-column>
+          <el-table-column prop="name" label="翻译状态" style="width: 10%"></el-table-column>
+          <el-table-column prop="name" label="订单状态" style="width: 10%"></el-table-column>
+          <el-table-column prop="name" label="开始翻译时间" style="width: 10%"></el-table-column>
+          <el-table-column prop="name" label="操作" style="width: 10%"></el-table-column>
         </el-table>
         </div>
       </div>
-    </div>
+    </div>  
     
   </main>
 </template>
@@ -51,19 +51,19 @@ export default {
       showProject: false,
       workList: [{
           date: '2016-05-02',
-          name: '王小虎',
+          name: 'test',
           address: '上海市普陀区金沙江路 1518 弄'
         }, {
           date: '2016-05-04',
-          name: '王小虎',
+          name: 'test',
           address: '上海市普陀区金沙江路 1517 弄'
         }, {
           date: '2016-05-01',
-          name: '王小虎',
+          name: 'test',
           address: '上海市普陀区金沙江路 1519 弄'
         }, {
           date: '2016-05-03',
-          name: '王小虎',
+          name: 'test',
           address: '上海市普陀区金沙江路 1516 弄'
         }],
       transState: [{

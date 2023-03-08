@@ -20,8 +20,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.my-container{
-  display: flex;
-  height: 772px;
+.my-layout {
+  height: 100vh;
+  .my-container{
+    display: flex;
+    height: 100%;
+  }
 }
+
 </style>

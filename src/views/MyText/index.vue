@@ -3,17 +3,15 @@
         <span class="my-main-text-title">文本翻译</span>
         <div class="my-main-text">
           <div class="my-main-text-header">
-            <div class="my-main-text-header-lang">
-              <div class="my-main-text-header-lang-cur">当前语言 |</div>
-              <div class="my-main-text-header-lang-auto"><span>自动选择</span><img src="@/assets/myText/downarr.svg" ></div>
-            </div>
-            <img src="@/assets/myText/translate.svg">
-            <div class="my-main-text-header-lang">
-              <div class="my-main-text-header-lang-cur">目标语言 |</div>
-              <div class="my-main-text-header-lang-auto"><span>自动选择</span><img src="@/assets/myText/downarr.svg" ></div>
-            </div>
-            <div class="my-main-text-header-targetlang"></div>
-          </div>
+            <el-select v-model="curValue" placeholder="当前语言">
+              <el-option v-for="item in Lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+          <img class="my-main-audio-header-trans" src="@/assets/myText/translate.svg">
+          <el-select v-model="tarValue" placeholder="目标语言">
+            <el-option v-for="item in Lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
+          <div class="my-main-audio-header-targetlang"></div>
+        </div>
           <div class="my-main-text-body">
             <textarea class="my-main-text-body-input"  placeholder="请输入需要翻译的内容" v-model="inputValue" @input="handleInput" @keydown.enter="getText"></textarea>
             <div class="my-main-text-body-result">{{resultValue}}</div>
@@ -28,7 +26,31 @@ export default {
   data(){
     return {
       inputValue: null,
-      resultValue: null
+      resultValue: null,
+      curValue:'',
+      tarValue:'',
+      Lang:[
+  {
+    value:'选项1',
+    label:'英语'
+  },
+  {
+    value:'选项2',
+    label:'韩语'
+  },
+  {
+    value:'选项3',
+    label:'中文'
+  },
+  {
+    value:'选项4',
+    label:'越南语'
+  },
+  {
+    value:'选项5',
+    label:'粤语'
+  }
+]
     }
   },
   methods: {
@@ -63,7 +85,11 @@ export default {
         margin: 30px 0;
         width:inherit;
         &>img{
+          cursor: pointer;
           margin: 0 10px;
+          &:hover {
+            stroke: #4366f6;
+          }
         }
         &-lang{
           display: flex;
@@ -96,7 +122,7 @@ export default {
         display: flex;
         &-input{
           box-sizing: border-box;
-          width: 600px;
+          width: 50%;
           height: 320px;
           padding: 15px 14px;
           border: 1px solid #d9d9d9;
@@ -105,7 +131,7 @@ export default {
         }
         &-result{
           box-sizing: border-box;
-          width: 600px;
+          width: 50%;
           height: 320px;
           padding: 15px 14px;
           font-size: 28px;
