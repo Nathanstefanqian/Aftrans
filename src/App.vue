@@ -1,16 +1,12 @@
 <template>
   <div>
-    <MyText />
+    <router-view />
   </div>
 </template>
 
 <script>
-  import MyText from './components/MyText.vue'
 export default {
-  name: 'App',
-  components: {
-    MyText
-  }
+  name: 'App'
 }
 </script>
 <style>
