@@ -3,7 +3,7 @@
         <span class="my-main-text-title">文本翻译</span>
         <div class="my-main-text">
           <div class="my-main-text-header">
-            <el-select v-model="curValue" placeholder="当前语言">
+            <el-select v-model="curValue"  filterable placeholder="当前语言">
               <el-option v-for="item in data.Lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           <img class="my-main-audio-header-trans" src="@/assets/myText/translate.svg">
@@ -42,7 +42,6 @@ export default {
       Message.warning({ message: '请先选择语言', duration: 4000 })
       return;
     }
-    console.log(this.Lang[this.curValue].name)
     let strEncode=Base64.encode(this.inputValue)
       const res= await request({
         url: '/trans/online',
@@ -50,7 +49,7 @@ export default {
         data:{
         appid:"654321",
         data: strEncode,
-        from:this.Lang[this.curValue].name
+        from:this.data.Lang[this.curValue].name
         }
       })
       console.log(res)

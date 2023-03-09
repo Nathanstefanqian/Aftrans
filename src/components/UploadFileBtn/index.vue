@@ -1,13 +1,15 @@
 <template>
   <el-upload
+  action=" "
   :class="className"
-  action=""
   :on-preview="handlePreview"
+  :on-success="handleSuccess"
   :on-remove="handleRemove"
   :before-remove="beforeRemove"
   multiple
   :limit="3"
   :on-exceed="handleExceed"
+  :on-error="handleError"
   :file-list="fileList">
   <el-button size="small" type="primary">点击上传</el-button>
   <div slot="tip" class="el-upload__tip">上传您想要翻译的文件</div>
@@ -25,12 +27,15 @@
       required: true
     }
   },
-    data() {
+  data() {
       return {
-        fileList: []
+        fileList: [{name:'food.jpg',url:'abc'}]
       };
     },
     methods: {
+      handleError() {
+        this.$message.error('上传失败，请重新上传')
+      },
       handleRemove(file, fileList) {
         console.log(file, fileList);
       },
@@ -39,6 +44,13 @@
       },
       handleExceed(files, fileList) {
         this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+      },
+      handleSuccess(res,file){
+        this.fileList.push({
+          name: file.name,
+          url: res.url
+        })
+        console.log(this.fileList)
       },
       beforeRemove(file) {
         return this.$confirm(`确定移除 ${ file.name }？`);
