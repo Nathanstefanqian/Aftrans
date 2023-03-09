@@ -6,26 +6,24 @@
       <span class="my-main-doc-menu-title" @click="showProjectDiv" :class="{ active: currentIndex === 1 }">任务管理</span>
     </div>
     <div class="my-main-doc-toggle">
-      <div class="my-main-doc-toggle-upload" v-show="showUpload" >
-        <div class="my-main-doc-toggle-upload-btn">选择文档</div>
-      </div>
+<UploadFileBtn className="my-main-doc-toggle-upload" v-show="showUpload" />
       <div class="my-main-doc-toggle-project" v-show="showProject">
         <div class="my-main-doc-toggle-project-header">
           <el-input placeholder="请输入内容" suffix-icon="el-icon-search" v-model="search" style=" width: 200px"></el-input>
           <div class="my-main-doc-toggle-project-header-right">
             <el-select v-model="transValue" placeholder="选择翻译状态" style=" margin-right: 10px">
-              <el-option v-for="item in transState" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              <el-option v-for="item in data.transState" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
             <el-select v-model="orderValue" placeholder="选择订单状态" style=" margin-right: 10px">
-              <el-option v-for="item in orderState" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              <el-option v-for="item in data.orderState" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
             <el-button type="primary" style="background-color: #3867FF">查询</el-button>
             <el-button>重置</el-button>
           </div>
         </div>
         <div class="my-main-doc-toggle-project-table">
-          <el-table :data="workList" border style="width: 100%">
-          <el-table-column prop="date" label="全选" style="width: 10%"><el-checkbox v-model="checked"></el-checkbox></el-table-column>
+          <el-table :data="data.workList" border style="width: 100%">
+          <el-table-column prop="date" label="全选" style="width: 10%"><el-checkbox></el-checkbox></el-table-column>
           <el-table-column prop="date" label="任务ID" style="width: 10%"></el-table-column>
           <el-table-column prop="name" label="文件名" style="width: 10%"></el-table-column>
           <el-table-column prop="name" label="页数" style="width: 10%"></el-table-column>
@@ -43,59 +41,19 @@
   </main>
 </template>
 <script>
+  import UploadFileBtn from '@/components/UploadFileBtn'
+  import data from '@/models/MyDocument/index'
 export default {
+  components:{
+    UploadFileBtn
+  },
   data() {
     return {
+      ...data,
+      checked:false,
       currentIndex: 0,
       showUpload: true,
       showProject: false,
-      workList: [{
-          date: '2016-05-02',
-          name: 'test',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: 'test',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: 'test',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: 'test',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }],
-      transState: [{
-          value: '选项1',
-          label: '全部'
-        }, {
-          value: '选项2',
-          label: '翻译成功'
-        }, {
-          value: '选项3',
-          label: '翻译失败'
-        }, {
-          value: '选项4',
-          label: '翻译中'
-        }],
-      orderState: [{
-          value: '选项1',
-          label: '全部'
-        }, {
-          value: '选项2',
-          label: '退回中'
-        }, {
-          value: '选项3',
-          label: '退回成功'
-        }, {
-          value: '选项4',
-          label: '退回失败'
-        },
-        {
-          value: '选项5',
-          label: '已支付'
-        }],
         orderValue: '',
         transValue: '',
         search:''
@@ -140,6 +98,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center; 
+      flex-direction: column;
       width:100%;
       height:350px;
       border: 1px dotted #999;

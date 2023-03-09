@@ -1,0 +1,43 @@
+const data ={
+  lang:[
+    {
+      value: 0,
+      label:'中文',
+      name:'zn_CN'
+    }
+  ]
+  ,
+  Lang:[
+{
+value:0,
+label:'英语',
+name:'en_XX'
+},
+{
+value:1,
+label:'韩语',
+name:'ko_KR'
+},
+{
+value:2,
+label:'中文',
+name:'zh_CN'
+},
+{
+value:3,
+label:'西班牙',
+name:'es_XX'
+},
+{
+value:4,
+label:'俄语',
+name:'ru_RU'
+},
+{
+value:5,
+label:'日本',
+name:'ja_XX'
+}
+]
+}
+export default {data}
