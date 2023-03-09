@@ -4,11 +4,11 @@
         <div class="my-main-text">
           <div class="my-main-text-header">
             <el-select v-model="curValue" placeholder="当前语言">
-              <el-option v-for="item in Lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
+              <el-option v-for="item in data.Lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           <img class="my-main-audio-header-trans" src="@/assets/myText/translate.svg">
-          <el-select v-model="tarValue" placeholder="目标语言">
-            <el-option v-for="item in Lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
+          <el-select v-model="tarValue" placeholder="目前只支持中文">
+            <el-option v-for="item in data.lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
           <div class="my-main-audio-header-targetlang"></div>
         </div>
@@ -21,51 +21,41 @@
 </template>
 <script>
 import request from '@/utils/request'
+import { Base64 } from 'js-base64'
+import { Message } from 'element-ui'
+import  data  from '@/models/MyText/index'
+
 export default {
   name: 'MyText',
   data(){
     return {
+      ...data,
       inputValue: null,
       resultValue: null,
-      curValue:'',
-      tarValue:'',
-      Lang:[
-  {
-    value:'选项1',
-    label:'英语'
-  },
-  {
-    value:'选项2',
-    label:'韩语'
-  },
-  {
-    value:'选项3',
-    label:'中文'
-  },
-  {
-    value:'选项4',
-    label:'越南语'
-  },
-  {
-    value:'选项5',
-    label:'粤语'
-  }
-]
+      curValue:null,
+      tarValue:null
     }
   },
   methods: {
    async getText(){
+    if(this.curValue===null){
+      Message.warning({ message: '请先选择语言', duration: 4000 })
+      return;
+    }
+    console.log(this.Lang[this.curValue].name)
+    let strEncode=Base64.encode(this.inputValue)
       const res= await request({
         url: '/trans/online',
         method: 'post',
         data:{
-        app_id:"xxxxxxxx",
-        from:"a",
-        to :"b" ,
-        data: this.inputValue
+        appid:"654321",
+        data: strEncode,
+        from:this.Lang[this.curValue].name
         }
       })
-      this.resultValue=res.result.zh_data
+      console.log(res)
+      console.log(res.result.zh_data)
+      this.resultValue=Base64.decode(res.result.zh_data);
     },
     handleInput(){
       if(!this.inputValue)this.resultValue="这里显示翻译的内容噢"
@@ -136,6 +126,7 @@ export default {
           padding: 15px 14px;
           font-size: 28px;
           background-color: #f0f2f9;
+          overflow: auto;
         }
       }
     }
