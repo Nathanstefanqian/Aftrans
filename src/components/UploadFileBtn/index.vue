@@ -6,12 +6,14 @@
   :on-success="handleSuccess"
   :on-remove="handleRemove"
   :before-remove="beforeRemove"
-  multiple
+  :multiple="false"
   :limit="3"
   :on-exceed="handleExceed"
   :on-error="handleError"
   :http-request="uploadFile"
-  :file-list="fileList">
+  :file-list="fileList"
+  :headers="headers"
+  >
   <el-button size="small" type="primary">点击上传</el-button>
   <div slot="tip" class="el-upload__tip">上传您想要翻译的文件</div>
 </el-upload>
@@ -31,24 +33,24 @@ import request from '@/utils/request'
   },
   data() {
       return {
-        fileList: []
+        fileList: [],
+        headers: { "Content-Type": "multipart/form-data" },
       };
     },
     methods: {
       async uploadFile(param) {
-        const formData=new FormData()
-        formData.append('file',param.file)
+        const data=new FormData()
+        console.log('pppp'+JSON.stringify(param))
+        data.append('file',param.file)
+        data.append('appid','123345')
+        data.append('from','en_XX')
+        data.append('to','zh_CN')
+        data.append('ocr',1)
+        data.append('priority',20)
         await request({
           url:'/trans/doc',
           method:'post',
-          data: {
-            appid:"xxxxxxxx",
-            file: formData,
-            from: 'zn_CH',
-            to: "en_XX",
-            occr: 0,
-            priority: 20
-          }
+          data
         })
       },
       handleError() {
