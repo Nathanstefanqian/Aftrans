@@ -1,25 +1,4 @@
 <template>
-<<<<<<< HEAD
-      <main class="my-main-layout">
-        <span class="my-main-text-title">文本翻译</span>
-        <div class="my-main-text">
-          <div class="my-main-text-header">
-            <el-select v-model="curValue"  filterable placeholder="当前语言">
-              <el-option v-for="item in data.Lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>
-          <img class="my-main-audio-header-trans" src="@/assets/myText/translate.svg">
-          <el-select v-model="tarValue" placeholder="目前只支持中文">
-            <el-option v-for="item in data.lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
-          </el-select>
-          <div class="my-main-audio-header-targetlang"></div>
-        </div>
-          <div class="my-main-text-body">
-            <textarea class="my-main-text-body-input"  placeholder="请输入需要翻译的内容" v-model="inputValue" @input="handleInput" @keydown.enter="getText"></textarea>
-            <div class="my-main-text-body-result">{{resultValue}}</div>
-          </div>
-        </div>  
-      </main>
-=======
   <main class="my-main-layout">
     <span class="my-main-text-title">文本翻译</span>
     <div class="my-main-text">
@@ -34,13 +13,11 @@
         <div class="my-main-audio-header-targetlang"></div>
       </div>
       <div class="my-main-text-body">
-        <textarea class="my-main-text-body-input" placeholder="请输入需要翻译的内容" v-model="inputValue" @input="handleInput"
-          @keydown.enter="getText"></textarea>
+        <textarea class="my-main-text-body-input" placeholder="请输入需要翻译的内容" v-model="inputValue" @input="handleInput" @keydown.enter="getText"></textarea>
         <div class="my-main-text-body-result">{{ resultValue }}</div>
       </div>
     </div>
   </main>
->>>>>>> 027811eae13e628fba46182638fffdeec4e71fae
 </template>
 <script>
 import request from '@/utils/request'
@@ -60,21 +37,6 @@ export default {
     }
   },
   methods: {
-<<<<<<< HEAD
-   async getText(){
-    if(this.curValue===null){
-      Message.warning({ message: '请先选择语言', duration: 4000 })
-      return;
-    }
-    let strEncode=Base64.encode(this.inputValue)
-      const res= await request({
-        url: '/trans/online',
-        method: 'post',
-        data:{
-        appid:"654321",
-        data: strEncode,
-        from:this.data.Lang[this.curValue].name
-=======
     async getText() {
       if (this.curValue === null) {
         Message.warning({ message: '请先选择语言', duration: 4000 })
@@ -87,8 +49,8 @@ export default {
         data: {
           appid: "654321",
           data: strEncode,
-          from: this.data.Lang[this.curValue].name
->>>>>>> 027811eae13e628fba46182638fffdeec4e71fae
+          from: this.data.Lang[this.curValue-1].name,
+          to:'zh_CN'
         }
       })
       console.log(res)
