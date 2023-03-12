@@ -1,22 +1,6 @@
 const data ={
-  workList: [{
-    date: '2016-05-02',
-    name: 'test',
-    address: '上海市普陀区金沙江路 1518 弄'
-  }, {
-    date: '2016-05-04',
-    name: 'test',
-    address: '上海市普陀区金沙江路 1517 弄'
-  }, {
-    date: '2016-05-01',
-    name: 'test',
-    address: '上海市普陀区金沙江路 1519 弄'
-  }, {
-    date: '2016-05-03',
-    name: 'test',
-    address: '上海市普陀区金沙江路 1516 弄'
-  }],
-transState: [{
+  workList: [],
+  transState: [{
     value: '选项1',
     label: '全部'
   }, {
@@ -29,7 +13,7 @@ transState: [{
     value: '选项4',
     label: '翻译中'
   }],
-orderState: [{
+  orderState: [{
     value: '选项1',
     label: '全部'
   }, {
@@ -45,6 +29,7 @@ orderState: [{
   {
     value: '选项5',
     label: '已支付'
-  }]
+  }],
+  
 }
-export default {data}
+export default { data }

@@ -42,7 +42,7 @@ import request from '@/utils/request'
         const data=new FormData()
         console.log('pppp'+JSON.stringify(param))
         data.append('file',param.file)
-        data.append('appid','123345')
+        data.append('appid','123456')
         data.append('from','en_XX')
         data.append('to','zh_CN')
         data.append('ocr',1)
