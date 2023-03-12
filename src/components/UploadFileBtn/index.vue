@@ -71,6 +71,7 @@ import request from '@/utils/request'
           name: file.name
         })
         console.log(this.fileList)
+        this.$emit('btnClick')
       },
       beforeRemove(file) {
         return this.$confirm(`确定移除 ${ file.name }？`);

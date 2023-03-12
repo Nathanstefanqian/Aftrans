@@ -22,9 +22,12 @@ export default {
 <style lang="scss" scoped>
 .my-layout {
   height: 100vh;
+  width: 100vw;
   .my-container{
     display: flex;
-    height: 100%;
+    height: calc(100vh - 62px);
+    width:100%;
+    overflow: hidden;
   }
 }
 
