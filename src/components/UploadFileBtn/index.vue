@@ -18,15 +18,17 @@
   <div slot="tip" class="el-upload__tip">上传您想要翻译的文件</div>
 </el-upload>
 </template>
-<style lang="scss" scoped>
 
-</style>
 
 <script>
 import request from '@/utils/request'
  export default {
   props: {
     className: {
+      type: String,
+      required: true
+    },
+    fromLang: {
       type: String,
       required: true
     }
@@ -43,7 +45,7 @@ import request from '@/utils/request'
         console.log('pppp'+JSON.stringify(param))
         data.append('file',param.file)
         data.append('appid','123456')
-        data.append('from','en_XX')
+        data.append('from',this.fromLang)
         data.append('to','zh_CN')
         data.append('ocr',1)
         data.append('priority',20)

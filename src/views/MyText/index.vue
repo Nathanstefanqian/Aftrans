@@ -10,11 +10,11 @@
         <el-select v-model="tarValue" placeholder="目前只支持中文">
           <el-option v-for="item in data.lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
-        <div class="my-main-audio-header-targetlang"></div>
+        <el-button type="primary" style="background-color: #3867FF; margin-left: 10px" @click="getText">翻译</el-button>
       </div>
       <div class="my-main-text-body">
-        <textarea class="my-main-text-body-input" placeholder="请输入需要翻译的内容" v-model="inputValue" @input="handleInput" @keydown.enter="getText"></textarea>
-        <div class="my-main-text-body-result">{{ resultValue }}</div>
+        <textarea class="my-main-text-body-input" placeholder="请输入需要翻译的内容" v-model="inputValue" @input="handleInput"></textarea>
+        <div class="my-main-text-body-result" v-html="resultValue"></div>
       </div>
     </div>
   </main>
@@ -23,7 +23,7 @@
 import request from '@/utils/request'
 import { Base64 } from 'js-base64'
 import { Message } from 'element-ui'
-import data from '@/models/MyText/index'
+import data from '@/models/MyTextnDoc/index'
 
 export default {
   name: 'MyText',
@@ -53,9 +53,10 @@ export default {
           to:'zh_CN'
         }
       })
-      console.log(res)
-      console.log(res.result.zh_data)
+      console.log('mytext',res)
+      console.log('解码',Base64.decode(res.result.zh_data))
       this.resultValue = Base64.decode(res.result.zh_data);
+      this.resultValue = this.resultValue.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>').replace(/\r/g, '<br>');
     },
     handleInput() {
       if (!this.inputValue) this.resultValue = "这里显示翻译的内容噢"
