@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d11034d-b314-4ba2-bfcc-2b63fb0051f4" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/MyDocument/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/MyDocument/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MyDocument/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MyDocument/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/log.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/log.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MyText/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MyText/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MyText/log.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MyText/log.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +25,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Mr0wlTpkmOpM9BZ2da301mJgvi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -30,7 +35,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/nathanq/Sites/NTU/aftrans/aftrans-web",
+    "last_opened_file_path": "E:/1.Solution/金话筒/GoldenMic/web",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -40,6 +45,18 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="serve" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">

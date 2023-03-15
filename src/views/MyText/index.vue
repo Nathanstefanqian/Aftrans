@@ -28,7 +28,7 @@ import { Base64 } from 'js-base64'
 import { Message } from 'element-ui'
 import data from '@/models/MyTextnDoc/index'
 import fromToLabel from '@/utils/fromToLabel'
-import { mapState,mapMutations } from 'vuex'
+// import { mapState,mapMutations } from 'vuex'
 export default {
   name: 'MyText',
   components: {
@@ -43,9 +43,9 @@ export default {
       tarValue: null,
     }
   },
-  computed:{...mapState('m_log',['log'])},
+  // computed:{...mapState('m_log',['log'])},
   methods: {
-    ...mapMutations('m_log',['addItem']),
+    // ...mapMutations('m_log',['addItem']),
     async getText() {
       if (this.curValue === null) {
         Message.warning({ message: '请先选择语言', duration: 4000 })
