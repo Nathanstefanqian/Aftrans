@@ -11,37 +11,47 @@
           <el-option v-for="item in data.lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
         <el-button type="primary" style="background-color: #3867FF; margin-left: 10px" @click="getText">翻译</el-button>
+        <el-button type="" style="margin-left: 10px" @click="handleLog">翻译记录</el-button>
       </div>
       <div class="my-main-text-body">
-        <textarea class="my-main-text-body-input" placeholder="请输入需要翻译的内容" v-model="inputValue" @input="handleInput"></textarea>
+        <el-input type="textarea" :autosize="{minRows:6 ,maxRows:23}" class="my-main-text-body-input" placeholder="请输入需要翻译的内容" v-model="inputValue" @input="handleInput"></el-input>
         <div class="my-main-text-body-result" v-html="resultValue"></div>
       </div>
     </div>
+    <dialog-log ref="dialogLog" @changeData="handleChange"></dialog-log>
   </main>
 </template>
 <script>
 import request from '@/utils/request'
+import getTime from '@/utils/getTime'
 import { Base64 } from 'js-base64'
 import { Message } from 'element-ui'
 import data from '@/models/MyTextnDoc/index'
-
+import fromToLabel from '@/utils/fromToLabel'
+import { mapState,mapMutations } from 'vuex'
 export default {
   name: 'MyText',
+  components: {
+    DialogLog: () => import('./log.vue')
+  },
   data() {
     return {
       ...data,
-      inputValue: null,
+      inputValue: '',
       resultValue: null,
-      curValue: null,
-      tarValue: null
+      curValue: 4,
+      tarValue: null,
     }
   },
+  computed:{...mapState('m_log',['log'])},
   methods: {
+    ...mapMutations('m_log',['addItem']),
     async getText() {
       if (this.curValue === null) {
         Message.warning({ message: '请先选择语言', duration: 4000 })
         return;
       }
+      const time =getTime()
       let strEncode = Base64.encode(this.inputValue)
       const res = await request({
         url: '/trans/online',
@@ -54,12 +64,21 @@ export default {
         }
       })
       console.log('mytext',res)
-      console.log('解码',Base64.decode(res.result.zh_data))
       this.resultValue = Base64.decode(res.result.zh_data);
-      this.resultValue = this.resultValue.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>').replace(/\r/g, '<br>');
+      this.resultValue = this.resultValue.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>').replace(/\r/g, '<br>')
+      const index =this.log.length+1
+      const logItem = {index: index,from: fromToLabel(res.result.from),to: fromToLabel(res.result.to),createTime: time,src: this.inputValue,res: this.resultValue}
+      this.addItem(logItem)
     },
     handleInput() {
       if (!this.inputValue) this.resultValue = "这里显示翻译的内容噢"
+    },
+    handleLog() {
+      this.$refs.dialogLog.dialogVisible=true
+    },
+    handleChange(newData){
+      this.inputValue=newData[0]
+      this.resultValue=newData[1]
     }
   }
 }
@@ -121,23 +140,21 @@ export default {
 
     &-body {
       display: flex;
-
       &-input {
         box-sizing: border-box;
         width: 50%;
-        height: 320px;
-        padding: 15px 14px;
-        border: 1px solid #d9d9d9;
+        line-height:14px;
+        //border: 1px solid #d9d9d9;
         resize: none;
-        font-size: 28px;
+        font-size: 16px;
+       //overflow: auto;
       }
 
       &-result {
         box-sizing: border-box;
         width: 50%;
-        height: 320px;
-        padding: 15px 14px;
-        font-size: 28px;
+        padding: 5px 5px;
+        font-size: 16px;
         background-color: #f0f2f9;
         overflow: auto;
       }

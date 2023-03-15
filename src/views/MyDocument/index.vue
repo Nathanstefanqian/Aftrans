@@ -118,7 +118,6 @@ export default {
       } })
     },
     async getData(){
-      console.log()
       const res = await request({
         url: '/trans/doc',
         method:'get',
@@ -129,7 +128,6 @@ export default {
           to: "zh_CN"
         }
       })
-      console.log(res)
       this.data.allList = res.result
       this.data.allList.forEach( (obj,index) => { 
         obj.page=res.page; 
@@ -137,13 +135,11 @@ export default {
         obj.status= 4;
         obj.index=index+1;
         let findObj =this.data.Lang.find( objj => objj.name === obj.from)
-        console.log('123',findObj)
         obj.from =findObj.label
         findObj =this.data.Lang.find( objj => objj.name === obj.to)
         obj.to =findObj.label
       })
       this.data.workList = this.data.allList
-      console.log('111',this.data.workList)
     },
     deleteData(row) {
       MessageBox.confirm('确认删除该数据吗？','提示',{

@@ -12,7 +12,7 @@ export default {
   name: 'SideBar',
   data() {
     return {
-      currentIndex: -1
+      currentIndex: 1
     }
   },
   methods: {
