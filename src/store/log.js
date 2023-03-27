@@ -5,15 +5,16 @@ export default {
     },
     mutations: {
         saveToStorage(state) {
+            console.log('存储成功!')
             localStorage.setItem('log', JSON.stringify(state.log))
         },
         deleteItem(state, i) {
             state.log.splice(i, 1)
-            this.saveToStorage()
+            this.commit('m_log/saveToStorage')
         },
-        addItem(state, data) {
+        addItem(state,data){
             state.log = [...state.log, data]
-            this.saveToStorage()
+            this.commit('m_log/saveToStorage')
         }
     }
 }

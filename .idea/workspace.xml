@@ -7,9 +7,14 @@
     <list default="true" id="0d11034d-b314-4ba2-bfcc-2b63fb0051f4" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UploadFileBtn/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UploadFileBtn/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/components/SideBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/components/SideBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/log.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/log.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MyAudio/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MyDocument/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MyDocument/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MyPage/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MyPage/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MyPicture/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MyPicture/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/MyText/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MyText/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/MyText/log.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MyText/log.vue" afterDir="false" />
     </list>
@@ -30,21 +35,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/1.Solution/金话筒/GoldenMic/web",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/1.Solution/金话筒/GoldenMic/web&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="serve" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -66,6 +71,8 @@
       <option name="presentableId" value="Default" />
       <updated>1678510635217</updated>
       <workItem from="1678510636624" duration="1672000" />
+      <workItem from="1679831025264" duration="148000" />
+      <workItem from="1679831182769" duration="525000" />
     </task>
     <servers />
   </component>

@@ -28,13 +28,13 @@ export const constantRoutes = [
     }]
   },
   {
-    path:'/myaudio',
+    path:'/myvoice',
     component: Layout,
     children:[{
       path: 'index',
-      name: 'myAudio',
-      component: () => import('@/views/MyAudio/index'),
-      meta: {title: 'myAudio', icon:'myAudio'}
+      name: 'myVoice',
+      component: () => import('@/views/MyVoice/index'),
+      meta: {title: 'myVoice', icon:'myVoice'}
     }]
   },
   {

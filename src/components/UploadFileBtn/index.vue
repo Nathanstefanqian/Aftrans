@@ -5,6 +5,7 @@
   :on-preview="handlePreview"
   :on-success="handleSuccess"
   :on-remove="handleRemove"
+  :before-upload="beforeUpload"
   :before-remove="beforeRemove"
   :multiple="false"
   :limit="3"
@@ -15,7 +16,7 @@
   :headers="headers"
   >
   <el-button size="small" type="primary">点击上传</el-button>
-  <div slot="tip" class="el-upload__tip">上传您想要翻译的文件</div>
+  <div slot="tip" class="el-upload__tip">{{this.tip}}</div>
 </el-upload>
 </template>
 
@@ -29,6 +30,18 @@ import request from '@/utils/request'
       required: true
     },
     fromLang: {
+      type: String,
+      required: true
+    },
+    url:{
+      type: String,
+      required: true
+    },
+    allowedTypes:{
+      type: Array,
+      required: true
+    },
+    tip:{
       type: String,
       required: true
     }
@@ -50,7 +63,7 @@ import request from '@/utils/request'
         data.append('ocr',1)
         data.append('priority',20)
         await request({
-          url:'/trans/doc',
+          url: this.url,
           method:'post',
           data
         })
@@ -76,7 +89,12 @@ import request from '@/utils/request'
         this.$emit('btnClick')
       },
       beforeRemove(file) {
-        return this.$confirm(`确定移除 ${ file.name }？`);
+        return this.$confirm(`确定移除 ${ file.name }?`);
+      },
+      beforeUpload(file){
+        const isAllowedType = this.allowedTypes.includes(file.type)
+        if (!isAllowedType) this.$message.error(this.tip)
+        return isAllowedType
       }
     }
   }

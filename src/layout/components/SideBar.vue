@@ -2,7 +2,7 @@
 <nav class="my-sidebar">
     <div class="my-sidebar-subnav" @click="gotoDocument" :class="{ active: currentIndex === 0 }"><img src="@/assets/myText/doc.svg">文档翻译</div>
     <div class="my-sidebar-subnav" @click="gotoText" :class="{ active: currentIndex === 1 }"><img src="@/assets/myText/doc.svg">文本翻译</div>
-    <div class="my-sidebar-subnav" @click="gotoAudio" :class="{ active: currentIndex === 2 }"><img src="@/assets/myText/doc.svg">语音翻译</div>
+    <div class="my-sidebar-subnav" @click="gotoVoice" :class="{ active: currentIndex === 2 }"><img src="@/assets/myText/doc.svg">语音翻译</div>
     <div class="my-sidebar-subnav" @click="gotoPicture" :class="{ active: currentIndex === 3 }"><img src="@/assets/myText/doc.svg">图片翻译</div>
     <div class="my-sidebar-subnav" @click="gotoPage" :class="{ active: currentIndex === 4 }"><img src="@/assets/myText/doc.svg">网页翻译</div>
 </nav> 
@@ -18,7 +18,7 @@ export default {
   methods: {
     gotoDocument() {this.$router.push('/mydocument/index'),this.handleChangeColor(0)},
     gotoText() {this.$router.push('/mytext/index'),this.handleChangeColor(1)},
-    gotoAudio() {this.$router.push('/myaudio/index'),this.handleChangeColor(2)},
+    gotoVoice() {this.$router.push('/myVoice/index'),this.handleChangeColor(2)},
     gotoPicture() {this.$router.push('/mypicture/index'),this.handleChangeColor(3)},
     gotoPage(){this.$router.push('/mypage/index'),this.handleChangeColor(4)},
     handleChangeColor(index) {

@@ -1,7 +1,7 @@
 <template>
   <main class="my-main-layout">
     <div class="my-main-doc-menu">
-      <span class="my-main-doc-menu-title" @click="showUploadDiv" :class="{ active: currentIndex === 0 }">文档翻译</span>
+      <span class="my-main-doc-menu-title" @click="showUploadDiv" :class="{ active: currentIndex === 0 }">语音翻译</span>
       <span class="my-main-doc-menu-space">|</span>
       <span class="my-main-doc-menu-title" @click="showProjectDiv" :class="{ active: currentIndex === 1 }">任务管理</span>
     </div>
@@ -15,7 +15,15 @@
           <el-option v-for="item in data.lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </div>
-      <UploadFileBtn className="my-main-doc-toggle-upload" :fromLang="this.data.Lang[this.curValue-1].name" v-show="showUpload" @btnClick="getData" />
+      <UploadFileBtn 
+      className="my-main-doc-toggle-upload" 
+      :fromLang="this.data.Lang[this.curValue-1].name"
+      :allowedTypes="allowedTypes"
+      tip="只能上传FLAC、MP3、WAV格式的文件"
+      url="/voice" 
+      v-show="showUpload" 
+      @btnClick="getData" 
+      />
       <div class="my-main-doc-toggle-project" v-show="showProject">
         <div class="my-main-doc-toggle-project-header">
           <div class="my-main-doc-toggle-project-header-left">
@@ -43,8 +51,8 @@
               {{ mapStatus[row.status] }}
             </template>
           </el-table-column>
-          <el-table-column prop="createTime" label="创建时间" style="width: 10%"></el-table-column>
-          <el-table-column prop="transTime" label="开始翻译时间" style="width: 10%"></el-table-column>
+          <el-table-column prop="createtime" label="创建时间" style="width: 10%"></el-table-column>
+          <el-table-column prop="recogtime" label="开始翻译时间" style="width: 10%"></el-table-column>
           <el-table-column prop=""  label="操作" style="width: 15%">
             <template slot-scope="{ row }">
               <div class="button-container">
@@ -60,10 +68,9 @@
   </main>
 </template>
 <script>
+  import api from '@/api'
   import UploadFileBtn from '@/components/UploadFileBtn'
   import data from '@/models/MyTextnDoc/index'
-  import request from '@/utils/request'
-  import { MessageBox  } from 'element-ui'
 export default {
   components:{
     UploadFileBtn
@@ -80,86 +87,15 @@ export default {
       orderValue: '',
       transValue: '',
       inputSearch:'',
-      mapStatus: ['未翻译','正在翻译','翻译完成','不支持类型','出错']
+      mapStatus: ['未翻译','正在翻译','翻译完成','不支持类型','出错'],
+      allowedTypes: ['audio/flac', 'audio/mpeg', 'audio/wav']
     }
   },
   created() {
   this.getData()
   },
   methods:{
-    getDownload(row) {
-      let a = document.createElement('a')
-      a.href = `http://asia.52asia.asia:4040/trans/down?appid=123456&id=${row.id}&lang=zh`
-      a.click()
-    },
-    async getDataByid(){
-      const targetList=this.data.allList.map(item => {if(item.filename === this.inputSearch) return item})
-      this.data.workList=[]
-      let index=1;
-      targetList.map(async item => {
-      if(item){
-      const res= await request({
-        url:'/trans/doc',
-        method: 'get',
-        params:{
-          appid: '123456',
-          page:0,
-          id:item.id
-        }
-      })
-      const obj =res.result[0]
-      if( obj.status=== 9 ) obj.status= 4;
-      obj.index=index; index++;
-      let findObj =this.data.Lang.find( objj => objj.name === obj.from)
-      obj.from=findObj.label;
-      findObj =this.data.Lang.find( objj => objj.name === obj.to )
-      obj.to =findObj.label;
-      this.data.workList = [...this.data.workList,obj ]
-      } })
-    },
-    async getData(){
-      const res = await request({
-        url: '/trans/doc',
-        method:'get',
-        params:{
-          appid: '123456',
-          page: 0,
-          from: this.data.Lang[this.curValue-1].name,
-          to: "zh_CN"
-        }
-      })
-      this.data.allList = res.result
-      this.data.allList.forEach( (obj,index) => { 
-        obj.page=res.page; 
-        if( obj.status=== 9 )
-        obj.status= 4;
-        obj.index=index+1;
-        let findObj =this.data.Lang.find( objj => objj.name === obj.from)
-        obj.from =findObj.label
-        findObj =this.data.Lang.find( objj => objj.name === obj.to)
-        obj.to =findObj.label
-      })
-      this.data.workList = this.data.allList
-    },
-    deleteData(row) {
-      MessageBox.confirm('确认删除该数据吗？','提示',{
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'Warning'
-      }).then(async ()=> {
-        const res = await request({
-        url:'/trans/doc',
-        method:'delete',
-        params:{
-          appid: '123456',
-          id: row.id
-        }
-      })
-      console.log('删除记录',res)
-      this.getData()
-      }).catch(()=>{})
-    
-    },
+    ...api.myvoice,
     showUploadDiv() {
       this.showUpload = true;
       this.showProject= false;

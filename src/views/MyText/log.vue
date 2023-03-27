@@ -36,7 +36,7 @@ export default {
     ...mapGetters(['log'])
   },
   methods: {
-    ...mapMutations(['m_log/deleteItem']),
+    ...mapMutations('m_log',{'deleteLogState':'deleteItem'}),
     handleReview(row) {
       const newData = [row.src, row.res]
       this.$emit('changeData', newData)
@@ -47,7 +47,7 @@ export default {
         cancelButtonText: '取消',
         type: 'Warning'
       }).then(() => {
-        this.deleteItem(row.index - 1)
+        this.deleteLogState(row.index - 1)
       })
     }
   }

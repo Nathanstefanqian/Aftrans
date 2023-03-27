@@ -6,7 +6,7 @@
         <el-select v-model="curValue" placeholder="当前语言" filterable>
           <el-option v-for="item in data.Lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
-        <img class="my-main-audio-header-trans" src="@/assets/myText/translate.svg">
+        <img class="my-main-Voice-header-trans" src="@/assets/myText/translate.svg">
         <el-select v-model="tarValue" placeholder="目前只支持中文">
           <el-option v-for="item in data.lang " :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
@@ -22,13 +22,9 @@
   </main>
 </template>
 <script>
-import request from '@/utils/request'
-import getTime from '@/utils/getTime'
-import { Base64 } from 'js-base64'
-import { Message } from 'element-ui'
+import api from '@/api'
 import data from '@/models/MyTextnDoc/index'
-import fromToLabel from '@/utils/fromToLabel'
-// import { mapState,mapMutations } from 'vuex'
+import { mapGetters,mapMutations } from 'vuex'
 export default {
   name: 'MyText',
   components: {
@@ -43,33 +39,10 @@ export default {
       tarValue: null,
     }
   },
-  // computed:{...mapState('m_log',['log'])},
+  computed:{...mapGetters(['log'])},
   methods: {
-    // ...mapMutations('m_log',['addItem']),
-    async getText() {
-      if (this.curValue === null) {
-        Message.warning({ message: '请先选择语言', duration: 4000 })
-        return;
-      }
-      const time =getTime()
-      let strEncode = Base64.encode(this.inputValue)
-      const res = await request({
-        url: '/trans/online',
-        method: 'post',
-        data: {
-          appid: "654321",
-          data: strEncode,
-          from: this.data.Lang[this.curValue-1].name,
-          to:'zh_CN'
-        }
-      })
-      console.log('mytext',res)
-      this.resultValue = Base64.decode(res.result.zh_data);
-      this.resultValue = this.resultValue.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>').replace(/\r/g, '<br>')
-      const index =this.log.length+1
-      const logItem = {index: index,from: fromToLabel(res.result.from),to: fromToLabel(res.result.to),createTime: time,src: this.inputValue,res: this.resultValue}
-      this.addItem(logItem)
-    },
+    ...api.mytext,
+    ...mapMutations('m_log',['addItem']),
     handleInput() {
       if (!this.inputValue) this.resultValue = "这里显示翻译的内容噢"
     },
