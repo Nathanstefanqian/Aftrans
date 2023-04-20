@@ -30,7 +30,6 @@ export async function getText() {
         }
       })
       loadingInstance.close();
-      console.log(this.$store._mutations)
       this.resultValue = Base64.decode(res.result.zh_data);
       this.resultValue = this.resultValue.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>').replace(/\r/g, '<br>')
       const index =this.log.length+1

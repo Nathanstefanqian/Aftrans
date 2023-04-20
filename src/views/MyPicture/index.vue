@@ -31,33 +31,30 @@
             <el-button type="primary" style="background-color: #3867FF; margin-left: 10px" @click="getDataByid">查询</el-button>
           </div>
           <div class="my-main-doc-toggle-project-header-right">
-            <!-- <el-select v-model="transValue" placeholder="选择翻译状态" style=" margin-right: 10px">
-              <el-option v-for="item in data.transState" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select> -->
-            <el-button type="primary" style="background-color: #3867FF; margin-left: 10px" @click="getData">刷新</el-button>
+            <el-button type="primary" style="background-color: #3867FF; margin-left: 10px" @click="getData(true)">刷新</el-button>
           </div>
         </div>
         <div class="my-main-doc-toggle-project-table">
-          <el-table :data="data.workList" border style="width: 100%" max-height="580px"> 
-          <el-table-column prop="index" align="center" label="序号" width="40%"></el-table-column>
-          <el-table-column prop="id" label="任务ID" style="width: 10%"></el-table-column>
-          <el-table-column prop="filename" label="文件名" style="width: 10%"></el-table-column>
-          <el-table-column prop="size" label="文件大小" style="width: 10%"></el-table-column>
-          <el-table-column prop="from" label="当前语言" style="width: 10%">
+          <el-table :data="data.workList" border  max-height="580px"> 
+          <el-table-column prop="index" align="center" label="序号" width="40"></el-table-column>
+          <el-table-column prop="docid" label="DOCID" width="120"></el-table-column>
+          <el-table-column prop="id" label="ID" width="120"></el-table-column>
+          <el-table-column prop="filename" label="文件名" width="180"></el-table-column>
+          <el-table-column prop="from" label="当前语言" width="120">
           </el-table-column>
-          <el-table-column prop="" label="目标语言" width="100%">中文</el-table-column>
-          <el-table-column prop="status" label="翻译状态" style="width: 10%">
+          <el-table-column prop="" label="目标语言" width="120">中文</el-table-column>
+          <el-table-column prop="status" label="翻译状态" width="100" >
             <template slot-scope="{ row }">
               {{ mapStatus[row.status] }}
             </template>
           </el-table-column>
-          <el-table-column prop="createtime" label="创建时间" style="width: 10%"></el-table-column>
-          <el-table-column prop="recogtime" label="开始翻译时间" style="width: 10%"></el-table-column>
-          <el-table-column prop=""  label="操作" style="width: 15%">
+          <el-table-column prop="createtime" label="创建时间" width="180"></el-table-column>
+          <el-table-column prop=""  label="操作" align="center">
             <template slot-scope="{ row }">
               <div class="button-container">
                 <el-button type="danger"  @click="deleteData(row)" size="mini">删除</el-button>
-                <el-button type="primary" width="20%" size="mini" style="background-color: #3867FF; margin-left: 10px" @click="getDownload(row)">下载</el-button>
+                <el-button type="primary" width="20%" size="mini" style="background-color: #3867FF; margin-left: 10px" @click="getDownloadRes(row)">译文下载</el-button>
+                <el-button type="primary" width="20%" size="mini" style="background-color: #3867FF; margin-left: 10px" @click="getDownloadRaw(row)">原文下载</el-button>
               </div> 
             </template>
           </el-table-column>
@@ -116,6 +113,7 @@
 </script>
 
 <style lang="scss" scoped>
+
 .my-main-doc {
   &-menu {
   display: flex;

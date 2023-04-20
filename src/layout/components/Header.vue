@@ -1,7 +1,7 @@
 <template>
   <header class="my-header">
     <div class="my-header-menu">
-      <div class="my-header-menu-logo"><img src="@/assets/myText/xunfeilogo.svg"></div>
+      <div class="my-header-menu-logo"><img src="@/assets/myText/logo.png"></div>
       <div class="my-header-menu-home"><img src="@/assets/myText/home.svg"><span>平台首页</span></div>
     </div>
     <div class="my-header-user">
@@ -32,6 +32,11 @@ export default {
   &-logo{
     width:173px;
     height:inherit;
+    img{
+    height: 62px;
+    position: absolute;
+    left: 0;
+    }
    }
   &-home{
     cursor: pointer;

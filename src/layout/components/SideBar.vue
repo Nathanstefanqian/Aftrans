@@ -47,9 +47,10 @@ export default {
     cursor: pointer;
     &:hover{
     //background-color:#4366f6;
-    background: linear-gradient(to right, #FFFFFF 0%,#ADD8E6 100%);
-    transition: all ease  1s;
+    color: #4c66ed;
+    transition: all 0.5s ease;
     }
+    transition: all 0.5s ease;
   }
 }
 .active {

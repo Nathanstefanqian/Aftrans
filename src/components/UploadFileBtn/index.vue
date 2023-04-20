@@ -55,7 +55,6 @@ import request from '@/utils/request'
     methods: {
       async uploadFile(param) {
         const data=new FormData()
-        console.log('pppp'+JSON.stringify(param))
         data.append('file',param.file)
         data.append('appid','123456')
         data.append('from',this.fromLang)
